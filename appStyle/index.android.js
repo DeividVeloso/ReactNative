@@ -15,7 +15,6 @@ const styles = {
 }
 
 const botaoPressionado = () =>{
-
     alert('botão pressionado');
 }
 
