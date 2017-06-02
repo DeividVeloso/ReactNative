@@ -7,34 +7,33 @@ import {
 } from 'react-native';
 
 const styles = {
-  styleText: {
-    fontSize: 40,
-    backgroundColor: '#08509B',
-    width: 60,
-    height: 60
-  },
-  styleTextTwo: {
-    fontSize: 40,
-    backgroundColor: '#2A48FA',
-    width: 60,
-    height: 60
-  },
-  styleView: {
-    backgroundColor: 'skyblue',
-    height: 300,
-    justifyContent: 'center', //FlexBox alinhamento na tela
-    alignItems: 'center',
-    flexDirection: 'row'
-  }
+    main:{
+      flex:1,
+      backgroundColor: 'cornflowerblue'
+    },
+    contentOne:{
+       flex:2, //2:11
+       backgroundColor: 'brown'
+    },
+    contentTwo:{
+       flex:8,//8:11
+       backgroundColor: 'yellowgreen'
+    },
+    contentThree:{
+       flex:1,//1:11
+       backgroundColor: 'orangered'
+    }
 }
 
 export default class App extends Component {
   render() {
-    const { styleText, styleTextTwo, styleView } = styles;
+    const { main, contentOne, contentTwo, contentThree } = styles;
     return (
-      <View style={styleView}>
-        <Text style={styleText}>A</Text>
-        <Text style={styleTextTwo}>B</Text>
+      <View style={main}>
+        <Text style={contentOne}>A</Text>
+        <Text style={contentTwo}>B</Text>
+        <Text style={contentThree}>C</Text>
+        
       </View>
     );
   }
