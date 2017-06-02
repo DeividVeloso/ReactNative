@@ -3,26 +3,20 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
 const styles = {
     main:{
-      flex:1,
-      backgroundColor: 'cornflowerblue'
-    },
-    contentOne:{
-       flex:2, //2:11
-       backgroundColor: 'brown'
-    },
-    contentTwo:{
-       flex:8,//8:11
-       backgroundColor: 'yellowgreen'
-    },
-    contentThree:{
-       flex:1,//1:11
-       backgroundColor: 'orangered'
+      backgroundColor: 'cornflowerblue',
+      padding: 40
     }
+}
+
+const botaoPressionado = () =>{
+
+    alert('botão pressionado');
 }
 
 export default class App extends Component {
@@ -30,10 +24,12 @@ export default class App extends Component {
     const { main, contentOne, contentTwo, contentThree } = styles;
     return (
       <View style={main}>
-        <Text style={contentOne}>A</Text>
-        <Text style={contentTwo}>B</Text>
-        <Text style={contentThree}>C</Text>
-        
+        <Button 
+          onPress={botaoPressionado}
+          title="Clique aqui"
+          color="#841584"
+          accessibilityLabel="Clique aqui para ler as noticias"// usado para deficiênte visual conseguir ler a tela e saber que aqui tem um botão
+        />
       </View>
     );
   }
