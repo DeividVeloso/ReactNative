@@ -1,53 +1,34 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  StyleSheet,
   Text,
   View,
-  Button,
-  TouchableOpacity
+  Image
 } from 'react-native';
 
 const styles = {
     main:{
       paddingTop:40
     },
-    buttonStyle:{
-      backgroundColor: '#48BBEC',
-      padding: 10,
-      borderColor:'#1D8EB8',
-      borderWidth: 2,
-      borderRadius: 8
+    styleImage:{
+       justifyContent: 'center'
     },
-    textStyle:{
-      color: '#fff',
-      fontSize: 16,
-      fontWeight: 'bold',
-      alignSelf: 'center'
+    styleText:{
+      backgroundColor: 'red'
     }
-
-}
-
-const botaoPressionado = () =>{
-    alert('botão pressionado');
 }
 
 export default class App extends Component {
   render() {
-    const { main, buttonStyle, textStyle} = styles;
+    const { main , styleImage, styleText} = styles;
     return (
       <View style={main}>
+        <Image style={styleImage} source={ require('./imgs/uvas.png') } >
+            <Text style={styleText}>Legenda para a foto</Text>
+        </Image>
 
-        <TouchableOpacity style={buttonStyle} onPress={botaoPressionado}>
-            <Text style={textStyle}>Clique aqui</Text>
-        </TouchableOpacity>
-
-        {/*<Button 
-          onPress={botaoPressionado}
-          title="Clique aqui"
-          color="#841584"
-          accessibilityLabel="Clique aqui para ler as noticias"// usado para deficiênte visual conseguir ler a tela e saber que aqui tem um botão
-        />*/}
+         {/*<Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+               style={{width: 400, height: 400}}/>*/}
       </View>
     );
   }
