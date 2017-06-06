@@ -12,10 +12,10 @@ class appJokenpo extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { escolhaUsuario: '', escolhaComputador: '' }
+    this.state = { escolhaUsuario: '', escolhaComputador: '', resultado : '' }
   }
 
-  jokenpo(escolha) {
+  jokenpo(escolhaUsuario) {
 
     var numRandom = Math.floor(Math.random() * 3);
     switch (numRandom) {
@@ -30,8 +30,20 @@ class appJokenpo extends Component {
         break;
     }
 
-    this.setState({ escolhaUsuario: escolha, escolhaComputador: escolhaComputador });
 
+    var resultado = ''
+
+    if(escolhaComputador == escolhaUsuario){
+        resultado = 'Empate!'
+    } else if((escolhaComputador == 'pedra' && escolhaUsuario == 'papel') 
+              || (escolhaComputador == 'papel' && escolhaUsuario == 'tesoura') 
+              || (escolhaComputador == 'tesoura' && escolhaUsuario == 'pedra')){
+             resultado = 'Usuário ganhou!'
+    }else {
+        resultado = 'Computador ganhou!'
+    }
+
+    this.setState({ escolhaUsuario: escolhaUsuario, escolhaComputador: escolhaComputador, resultado: resultado });
   }
 
   render() {
@@ -39,7 +51,7 @@ class appJokenpo extends Component {
       <View>
         <Text>Escolha do computador: {this.state.escolhaComputador}</Text>
         <Text>Escolha do usuário: {this.state.escolhaUsuario}</Text>
-        <Text>Resultado</Text>
+        <Text>Resultado: {this.state.resultado}</Text>
         <Button title='pedra' onPress={() => this.jokenpo('pedra')}></Button>
         <Button title='papel' onPress={() => this.jokenpo('papel')}></Button>
         <Button title='tesoura' onPress={() => this.jokenpo('tesoura')}></Button>
