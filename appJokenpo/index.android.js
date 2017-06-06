@@ -1,53 +1,54 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
-export default class appJokenpo extends Component {
+
+
+
+class MeuComponente extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View>
+          {/*Recebendo a propriedade do PAI appJokenpo*/}
+          <Text>{this.props.alteraTexto}</Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+class appJokenpo extends Component {
+
+  constructor(props){
+    super(props);
+    //Declarando a variávelde estado para usar na aplicação
+    this.state = { texto : 'Texto teste 2'};
+  }
+
+  alteraTextoFunc(){
+    //Só podemos alterar uma variavel do state através dessa função
+    //Passar sempre um objeto literal
+    this.setState({texto : 'Outra coisa'});
+  }
+    
+  render() {
+    return (
+      <View>
+          {/*Passando como propriedade para o componente filho*/}
+          <MeuComponente alteraTexto={this.state.texto}></MeuComponente>
+          {/*usar a arrow function para não executar a função na hora que carrega a tela,
+          e também para passar o this léxico para saber da onde chamar o this.setState, senão teriamosque dar um bind no contructor
+          this.alteraTextoFunc = this.alteraTextoFunc.bind(this);
+          */}
+          <Button title='Troca Texto' onPress={() => this.alteraTextoFunc()}></Button>
+      </View>
+    );
+  }
+}
+
 
 AppRegistry.registerComponent('appJokenpo', () => appJokenpo);
