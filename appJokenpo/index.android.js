@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
 
 class appJokenpo extends Component {
@@ -49,15 +50,49 @@ class appJokenpo extends Component {
   render() {
     return (
       <View>
-        <Text>Escolha do computador: {this.state.escolhaComputador}</Text>
-        <Text>Escolha do usuário: {this.state.escolhaUsuario}</Text>
-        <Text>Resultado: {this.state.resultado}</Text>
-        <Button title='pedra' onPress={() => this.jokenpo('pedra')}></Button>
-        <Button title='papel' onPress={() => this.jokenpo('papel')}></Button>
-        <Button title='tesoura' onPress={() => this.jokenpo('tesoura')}></Button>
+        <Topo></Topo>
+        <View style={styles.painelBotoes}>
+            <View style={ styles.botaoEscolha }>
+              <Button title='pedra' onPress={() => this.jokenpo('pedra')}></Button>
+            </View>
+            <View style={ styles.botaoEscolha }>
+              <Button title='papel' onPress={() => this.jokenpo('papel')}></Button>
+            </View>
+            <View style={ styles.botaoEscolha }>
+              <Button title='tesoura' onPress={() => this.jokenpo('tesoura')}></Button>
+            </View>
+        </View>
+        <View>
+          <Text>Escolha do computador: {this.state.escolhaComputador}</Text>
+          <Text>Escolha do usuário: {this.state.escolhaUsuario}</Text>
+          <Text>Resultado: {this.state.resultado}</Text>
+        </View>
+        
+        
       </View>
     );
   }
 }
+
+ class Topo extends Component{
+    render(){
+        return(
+            <View>
+                <Image source={require('./imgs/jokenpo.png')}></Image>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+   botaoEscolha:{
+     width: 90
+   },
+   painelBotoes:{
+     flexDirection: 'row', //Alinha os componetes em linha(display-inline) ao invés de display block
+     justifyContent: 'space-between',//dá espaçamento entre eles com a mesma proporção
+     margin: 10,
+   }
+});
 
 AppRegistry.registerComponent('appJokenpo', () => appJokenpo);
