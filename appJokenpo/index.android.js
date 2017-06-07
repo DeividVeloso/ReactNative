@@ -8,6 +8,9 @@ import {
   Image
 } from 'react-native';
 
+import Topo from './src/components/Topo';
+import Icone from './src/components/Icone';
+
 class appJokenpo extends Component {
 
   constructor(props) {
@@ -87,35 +90,6 @@ class appJokenpo extends Component {
   }
 }
 
-class Icone extends Component{
-  render(){
-    if(this.props.escolha){
-      return(
-        <View style={styles.icone}>
-            <Text style={styles.txtJogador}>{this.props.jogador}</Text>
-            { 
-              this.props.escolha == 'pedra' ? <Image source={require(`./imgs/pedra.png`)}></Image> 
-              : this.props.escolha == 'tesoura' ?  <Image source={require(`./imgs/tesoura.png`)}></Image>
-              : this.props.escolha == 'papel' ?  <Image source={require(`./imgs/papel.png`)}></Image>
-              : <Image></Image>
-            }
-        </View>
-      )
-    }else{
-      return false;
-    }
-  }
-}
-
-class Topo extends Component {
-  render() {
-    return (
-      <View>
-        <Image source={require('./imgs/jokenpo.png')}></Image>
-      </View>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   botaoEscolha: {
@@ -133,14 +107,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 25,
     fontWeight: 'bold' 
-  },
-  icone:{
-    alignItems: 'center',
-    marginBottom: 20
-  },
-  txtJogador:{
-    fontSize: 20
   }
+ 
 });
 
 AppRegistry.registerComponent('appJokenpo', () => appJokenpo);
