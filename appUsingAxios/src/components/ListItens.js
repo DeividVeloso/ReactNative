@@ -1,29 +1,24 @@
-import React, { Component } from "react";
-import { View } from "react-native";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import Axios from 'axios';
 
 import Item from './Item';
 
+const urlApi = 'http://faus.com.br/recursos/c/dmairr/api/itens.html';
 export default class ListItens extends Component {
-  constructor(props) {
-    super(props);
-    console.log("Construindo a aplicação");
-  }
 
-  componentWillMount() {
-    console.log("faz algo antes de renderizar o componente na tela");
-  }
-
-  componentDidMount() {
-    console.log("faz algo depois de renderizar o componente na tela");
-  }
+componentWillMount() {
+    Axios.get(urlApi)
+    .then((response) => { console.log(response); })
+    .catch((error) => console.log(error));
+}
 
   render() {
-    console.log("Componente renderizou");
     return (
       <View>
-        <Item/>
-        <Item/>
-        <Item/>
+        <Item />
+        <Item />
+        <Item />
       </View>
     );
   }
