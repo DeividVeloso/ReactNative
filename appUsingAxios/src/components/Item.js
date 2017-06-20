@@ -6,3 +6,4 @@ class Item extends Component {
     return <View />;
   }
 }
+export default Item;
