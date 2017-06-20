@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import Item from './Item';
 
 export default class ListItens extends Component {
   constructor(props) {
@@ -19,7 +21,9 @@ export default class ListItens extends Component {
     console.log("Componente renderizou");
     return (
       <View>
-        <Text> Teste </Text>
+        <Item/>
+        <Item/>
+        <Item/>
       </View>
     );
   }
