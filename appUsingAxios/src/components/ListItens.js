@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import Axios from 'axios';
+import React, { Component } from "react";
+import { ScrollView } from "react-native";
+import Axios from "axios";
 
-import Item from './Item';
+import Item from "./Item";
 
-const urlApi = 'http://faus.com.br/recursos/c/dmairr/api/itens.html';
+const urlApi = "http://faus.com.br/recursos/c/dmairr/api/itens.html";
 export default class ListItens extends Component {
   constructor(props) {
     super(props);
@@ -22,9 +22,11 @@ export default class ListItens extends Component {
 
   render() {
     return (
-      <View>
-        {this.state.listItens.map((item, index) => (<Text key={index}> {item.titulo} </Text>))}
-      </View>
+      <ScrollView>
+        {this.state.listItens.map((item, index) => (
+          <Item key={index} item={item}> </Item>
+        ))}
+      </ScrollView>
     );
   }
 }
