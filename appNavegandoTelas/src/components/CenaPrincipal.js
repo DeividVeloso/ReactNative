@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  Image
+  Image,
+  TouchableHighlight
 } from "react-native";
 
 import BarraNavegacao from "./BarraNavegacao";
@@ -27,11 +28,11 @@ const styles = StyleSheet.create({
   },
   viewSecond: {
     flexDirection: "row",
-      justifyContent: "center"
-    },
-    img:{
-      margin:15
-    }
+    justifyContent: "center"
+  },
+  img: {
+    margin: 15
+  }
 });
 
 export default class CenaPrincipal extends Component {
@@ -42,12 +43,20 @@ export default class CenaPrincipal extends Component {
           hidden={false} //Usado para esconder a barra de status
           backgroundColor={"#CCC"}
         />
-        <BarraNavegacao />
+
+
+        <BarraNavegacao/>
+
+
         <View style={styles.viewLogo}>
           <Image source={logo} />
         </View>
         <View style={styles.viewFirst}>
-          <Image style={styles.img} source={menuCliente} />
+          <TouchableHighlight onPress={() => {
+              this.props.navigator.push({ id: 'b'});
+            }}>
+            <Image style={styles.img} source={menuCliente} />
+          </TouchableHighlight>
           <Image style={styles.img} source={menuContato} />
         </View>
         <View style={styles.viewSecond}>
