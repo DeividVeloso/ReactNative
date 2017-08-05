@@ -12,15 +12,17 @@ import BarraNavegacao from "./BarraNavegacao";
 
 const detalheEmpresa = require('../imgs/detalhe_empresa.png');
 
+const color = '#EC7148';
+
 
 export default class CenaEmpresa extends Component {
     render() {
         return (
-            <View>
+            <View style={{ flex: 1, backgroundColor: '#FFF' }}>
                 <StatusBar
-                    backgroundColor={"#CCC"}
+                    backgroundColor={"#EC7148"}
                 />
-                <BarraNavegacao voltar navigator={this.props.navigator} />
+                <BarraNavegacao color={color}  voltar navigator={this.props.navigator} />
 
                 <View style={styles.detalhes}>
                     <Image source={detalheEmpresa} />
@@ -47,7 +49,7 @@ const styles = StyleSheet.create({
     },
     detalheEmpresa: {
         marginTop: 20,
-        padding:10
+        padding: 10
     },
     txtContatos: {
         fontSize: 15

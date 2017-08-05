@@ -11,16 +11,16 @@ import {
 import BarraNavegacao from "./BarraNavegacao";
 
 const detalheServico = require('../imgs/detalhe_servico.png');
-
+const color = '#19D1C8';
 
 export default class CenaServicos extends Component {
     render() {
         return (
-            <View>
+            <View style={{ flex: 1, backgroundColor: '#FFF' }}>
                 <StatusBar
-                    backgroundColor={"#CCC"}
+                    backgroundColor={"#19D1C8"}
                 />
-                <BarraNavegacao voltar navigator={this.props.navigator} />
+                <BarraNavegacao color={color} voltar navigator={this.props.navigator} />
 
                 <View style={styles.detalhes}>
                     <Image source={detalheServico} />
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     detalheServicos: {
         marginTop: 20,
-        padding:10
+        padding: 10
     },
     txtServicos: {
         fontSize: 18

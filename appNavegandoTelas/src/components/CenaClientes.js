@@ -13,17 +13,18 @@ import BarraNavegacao from "./BarraNavegacao";
 const  detalheClientes = require('../imgs/detalhe_cliente.png');
 const  cliente1 = require('../imgs/cliente1.png');
 const  cliente2 = require('../imgs/cliente2.png');
+const color = '#B9C941'
 
 export default class CenaClientes extends Component {
   render() {
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor: '#FFF'}}>
         <StatusBar
           hidden={false} //Usado para esconder a barra de status
-          backgroundColor={"#B9C941"}
+          backgroundColor={color}
         />
 
-        <BarraNavegacao voltar navigator={this.props.navigator}/>
+        <BarraNavegacao color={color} voltar navigator={this.props.navigator}/>
         
         <View style={styles.detalhes}>
             <Image source={detalheClientes} />

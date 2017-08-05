@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 60,
     flexDirection: 'row'
+
   },
   titulo: {
     flex: 1,
@@ -32,7 +33,7 @@ export default class BarraNavegacao extends Component {
     //Se a propriedade for true, mostar a Imagem de voltar
     if (this.props.voltar) {
       return (
-        <View style={navTitulo}>
+        <View style={[navTitulo, { backgroundColor: this.props.color }]}>
           <TouchableHighlight
             onPress={() => {
               this.props.navigator.pop();
