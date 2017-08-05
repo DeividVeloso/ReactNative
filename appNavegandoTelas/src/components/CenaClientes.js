@@ -22,7 +22,9 @@ export default class CenaClientes extends Component {
           hidden={false} //Usado para esconder a barra de status
           backgroundColor={"#B9C941"}
         />
-        <BarraNavegacao />
+
+        <BarraNavegacao voltar navigator={this.props.navigator}/>
+        
         <View style={styles.detalhes}>
             <Image source={detalheClientes} />
             <Text style={styles.txtTitulo}>Nossos Clientes</Text>

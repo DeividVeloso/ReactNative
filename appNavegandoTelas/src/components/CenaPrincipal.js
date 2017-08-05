@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  Image
+  Image,
+  TouchableHighlight
 } from "react-native";
 
 import BarraNavegacao from "./BarraNavegacao";
@@ -27,11 +28,11 @@ const styles = StyleSheet.create({
   },
   viewSecond: {
     flexDirection: "row",
-      justifyContent: "center"
-    },
-    img:{
-      margin:15
-    }
+    justifyContent: "center"
+  },
+  img: {
+    margin: 15
+  }
 });
 
 export default class CenaPrincipal extends Component {
@@ -42,17 +43,46 @@ export default class CenaPrincipal extends Component {
           hidden={false} //Usado para esconder a barra de status
           backgroundColor={"#CCC"}
         />
+
+
         <BarraNavegacao />
+
+
         <View style={styles.viewLogo}>
           <Image source={logo} />
         </View>
         <View style={styles.viewFirst}>
-          <Image style={styles.img} source={menuCliente} />
-          <Image style={styles.img} source={menuContato} />
+          {/*Menu Cliente*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'clientes' });
+            }}>
+            <Image style={styles.img} source={menuCliente} />
+          </TouchableHighlight>
+          {/*Menu Contato*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'contatos' });
+            }}>
+            <Image style={styles.img} source={menuContato} />
+          </TouchableHighlight>
+
         </View>
         <View style={styles.viewSecond}>
-          <Image style={styles.img} source={menuEmpresa} />
-          <Image style={styles.img} source={menuServico} />
+          {/*Menu Empresa*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'empresa' });
+            }}>
+            <Image style={styles.img} source={menuEmpresa} />
+          </TouchableHighlight>
+          {/*Menu Servico*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'servicos' });
+            }}>
+            <Image style={styles.img} source={menuServico} />
+          </TouchableHighlight>
         </View>
       </View>
     );
