@@ -45,23 +45,44 @@ export default class CenaPrincipal extends Component {
         />
 
 
-        <BarraNavegacao/>
+        <BarraNavegacao />
 
 
         <View style={styles.viewLogo}>
           <Image source={logo} />
         </View>
         <View style={styles.viewFirst}>
-          <TouchableHighlight onPress={() => {
-              this.props.navigator.push({ id: 'b'});
+          {/*Menu Cliente*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'clientes' });
             }}>
             <Image style={styles.img} source={menuCliente} />
           </TouchableHighlight>
-          <Image style={styles.img} source={menuContato} />
+          {/*Menu Contato*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'contatos' });
+            }}>
+            <Image style={styles.img} source={menuContato} />
+          </TouchableHighlight>
+
         </View>
         <View style={styles.viewSecond}>
-          <Image style={styles.img} source={menuEmpresa} />
-          <Image style={styles.img} source={menuServico} />
+          {/*Menu Empresa*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'empresa' });
+            }}>
+            <Image style={styles.img} source={menuEmpresa} />
+          </TouchableHighlight>
+          {/*Menu Servico*/}
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.push({ id: 'servicos' });
+            }}>
+            <Image style={styles.img} source={menuServico} />
+          </TouchableHighlight>
         </View>
       </View>
     );

@@ -4,7 +4,8 @@ import {
   View,
   Text,
   Image,
-  StyleSheet
+  StyleSheet,
+  TouchableHighlight
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -32,7 +33,12 @@ export default class BarraNavegacao extends Component {
     if (this.props.voltar) {
       return (
         <View style={navTitulo}>
-          <Image source={btnVoltar} />
+          <TouchableHighlight
+            onPress={() => {
+              this.props.navigator.pop();
+            }}>
+            <Image source={btnVoltar} />
+          </TouchableHighlight>
           <Text style={titulo}>ATM Consultoria</Text>
         </View>
       );
