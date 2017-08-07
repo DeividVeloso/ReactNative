@@ -54,6 +54,8 @@ export default class CenaPrincipal extends Component {
         <View style={styles.viewFirst}>
           {/*Menu Cliente*/}
           <TouchableHighlight
+          underlayColor={'#B9C941'}
+          activeOpacity={0.3}
             onPress={() => {
               this.props.navigator.push({ id: 'clientes' });
             }}>
