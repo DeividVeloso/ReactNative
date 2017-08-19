@@ -1,19 +1,11 @@
 import React from 'react';
 import {
-  AppRegistry,
-  View
+  AppRegistry
 } from 'react-native';
 
-import Topo from './src/components/Topo';
-import Resultado from './src/components/Resultado';
-import Painel from './src/components/Painel';
-
+import App from './src/App';
 const appReactRedux = () => (
-  <View>
-    <Topo />
-    <Resultado />
-    <Painel />
-  </View>
+  <App />
 )
 
 AppRegistry.registerComponent('appReactRedux', () => appReactRedux);

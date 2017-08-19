@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import Visor from './Visor';
 
 const Resultado = () => (
     <View>
-        <Text>
-            Resultado 
-        </Text>
+       <Visor/>
     </View>
 );
-export default Resultado;
+export { Resultado };

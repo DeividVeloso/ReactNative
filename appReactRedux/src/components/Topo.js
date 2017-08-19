@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import Cabecalho from './Cabecalho'
+
 const Topo = () => (
-    <View>
-        <Text>
-            Topo 
-        </Text>
-    </View>
+    <Cabecalho/>
 );
 
-export default Topo;
+export { Topo };
