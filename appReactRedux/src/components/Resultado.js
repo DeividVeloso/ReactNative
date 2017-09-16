@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Visor from './Visor';
 
-const Resultado = () => (
+const Resultado = props => (
     <View>
-       <Visor/>
+       <Visor resultado={props.resultado}/>
     </View>
 );
 export { Resultado };

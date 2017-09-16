@@ -2,7 +2,11 @@ import React from 'react';
 import { Picker, StyleSheet } from 'react-native';
 
 export default props => (
-    <Picker style={styles.operacao}>
+    <Picker 
+    style={styles.operacao}
+    selectedValue={props.operacao}
+    onValueChange={ op => { props.atualizaOperacao(op)}}
+    >
         <Picker.Item label='Soma' value='soma' />
         <Picker.Item label='Subtração' value='subtracao' />
         <Picker.Item label='Divisão' value='divisao' />
