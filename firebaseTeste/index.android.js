@@ -26,21 +26,35 @@ export default class App extends Component {
     var funcionarios = firebase.database().ref("funcionarios");
     //Gerando um nó de identificador único com o filho Nome
     funcionarios.push().set({
-      nome:"Deivid Veloso",
-      peso:'70KG',
-      altura:'1,85'
+      nome: "Deivid Veloso",
+      peso: '70KG',
+      altura: '1,85'
     });
   }
+
+  listarDados() {
+    var pontuacao = firebase.database().ref("pontuacao");
+    pontuacao.on('value', (snapshot) => {
+        alert(snapshot.val()); //PEgando o valor do firebase nó "pontuação"
+    });
+  }
+
   render() {
     return (
       <View>
-        <Text>
-          Welcome to React Native!
-        </Text>
+
         <Button
           title='Salvar dados'
           color='#841584'
           onPress={() => this.salvadarDados()} />
+        <Button
+          title='Listar dados'
+          color='#841584'
+          onPress={() => this.listarDados()} />
+
+        <Text>
+          Meu App
+        </Text>
       </View>
     );
   }
