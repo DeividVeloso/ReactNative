@@ -22,39 +22,73 @@ export default class App extends Component {
     };
     firebase.initializeApp(config);
   }
-  salvadarDados() {
-    var funcionarios = firebase.database().ref("funcionarios");
-    //Gerando um nó de identificador único com o filho Nome
-    funcionarios.push().set({
-      nome: "Deivid Veloso",
-      peso: '70KG',
-      altura: '1,85'
-    });
+
+
+  cadastrarUsuario() {
+    let email = 'veloso.deivid@gmail.com';
+    let password = '123456';
+
+    firebase.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+      });
   }
 
-  listarDados() {
-    var pontuacao = firebase.database().ref("pontuacao");
-    pontuacao.on('value', (snapshot) => {
-        alert(snapshot.val()); //PEgando o valor do firebase nó "pontuação"
-    });
+  verificarUsuarioLogado() {
+    //const usuarioLogado = firebase.auth().currentUser;
+    const usuario = firebase.auth()
+    //Precisa ser chamado para invocar o método
+    usuario.onAuthStateChanged(
+      (usuarioLogado) => {
+        if (usuarioLogado) {
+          alert("User logado");
+        } else {
+          alert("User not logado");
+        }
+      }
+    );
+  }
+
+  deslogarUsuario() {
+    const usuario = firebase.auth()
+    usuario.signOut();
+  }
+
+  logarUsuario() {
+    let email = 'veloso.deivid@gmail.com';
+    let password = '123456777';
+
+    const usuario = firebase.auth()
+    usuario.signInWithEmailAndPassword(email, password);
+
   }
 
   render() {
     return (
       <View>
-
         <Button
           title='Salvar dados'
           color='#841584'
-          onPress={() => this.salvadarDados()} />
-        <Button
-          title='Listar dados'
-          color='#841584'
-          onPress={() => this.listarDados()} />
+          onPress={() => this.cadastrarUsuario()} />
 
-        <Text>
-          Meu App
-        </Text>
+        <Button
+          title='verificar Logado'
+          color='#841584'
+          onPress={() => this.verificarUsuarioLogado()} />
+
+        <Button
+          title='Deslogar usuário'
+          color='#841584'
+          onPress={() => this.deslogarUsuario()} />
+
+        <Button
+          title='Logar usuário'
+          color='#841584'
+          onPress={() => this.logarUsuario()} />
       </View>
     );
   }
