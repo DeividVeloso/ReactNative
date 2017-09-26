@@ -6,7 +6,7 @@ export default class Chat extends React.Component {
     title: `Chat with ${navigation.state.params.user}`
   });
   render() {
-    const { params } = this.props.navigation.state;
+    const { params } = this.props.navigation.params;
     return (
       <View>
         <Text>Chat with {params.user}</Text>
