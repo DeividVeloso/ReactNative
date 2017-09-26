@@ -20,6 +20,10 @@ export default class Container extends Component {
     })
   }
 
+  static navigationOptions = {
+    title: "Token"
+  };
+
   _handleText(e) {
     if (e.length <= 14) {
       this.setState({ textCpf: this._handleCPF(e) })
