@@ -1,80 +1,15 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React from "react";
+import { AppRegistry, Text } from "react-native";
+import { StackNavigator } from "react-navigation";
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TextInput
-} from 'react-native';
+import Container from "./src/components/Container";
+import Home from './src/components/Home';
+import Chat from './src/components/Chat';
 
-import SmsListener from 'react-native-android-sms-listener'
-
-export default class pocs extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { textCpf: '', token: '' }
-    let subscription = SmsListener.addListener(message => {
-      var value = message.body;
-      var numberPattern = /\d+/g;
-      value = value.match(numberPattern).join([]);
-      this.setState({ token: value })
-    })
-  }
-
-  _handleText(e) {
-    if (e.length <= 14) {
-      this.setState({ textCpf: this._handleCPF(e) })
-    }
-  }
-
-  _handleCPF(cpf) {
-    cpf = cpf.replace(/\D/g, "")
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-
-    return cpf
-  }
-
-  _handleSMS(e) {
-    this.setState({ token: e })
-  }
-
-
-
-  render() {
-    return (
-      <View  style={styles.view}>
-        <TextInput
-          placeholder={'   .   .   -  '}
-          value={this.state.textCpf}
-          keyboardType={'numeric'}
-          onChangeText={(e) => this._handleText(e)}
-        />
-        <TextInput 
-          placeholder={'Token'}
-          value={this.state.token}
-          keyboardType={'numeric'}
-          onChangeText={(e) => this._handleSMS(e)}
-        />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: 'center',
-    flex:1
-  }
+ const pocs = StackNavigator({
+  Home: { screen: Home },
+  Container: { screen: Container},
+  Chat: {screen: Chat}
 });
 
-
-
-AppRegistry.registerComponent('pocs', () => pocs);
+AppRegistry.registerComponent("pocs", () => pocs);
