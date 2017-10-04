@@ -8,7 +8,8 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  View
+  View,
+  Alert
 } from "react-native";
 import Camera from "react-native-camera";
 const styles = StyleSheet.create({
@@ -102,7 +103,7 @@ export default class Chat extends React.Component {
     return icon;
   }
 
-  _onBarCodeRead() {
+  _onBarCodeRead(e) {
     this.setState({ showCamera: false });
     Alert.alert("Barcode Found!", "Type: " + e.type + "\nData: " + e.data);
   }
@@ -120,6 +121,8 @@ export default class Chat extends React.Component {
           captureTarget={this.state.camera.captureTarget}
           type={this.state.camera.type}
           flashMode={this.state.camera.flashMode}
+          onFocusChanged={() => {}}
+          onZoomChanged={() => {}}
           defaultTouchToFocus
           mirrorImage={false}
           onBarCodeRead={this._onBarCodeRead}
