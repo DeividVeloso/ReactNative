@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, Button, TextInput, View, StyleSheet } from "react-native";
+import {
+  Text,
+  Button,
+  TouchableOpacity,
+  TextInput,
+  View,
+  StyleSheet
+} from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,18 +31,31 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
-export default props => (
-  <View style={styles.container}>
-    <View style={styles.viewTitle}>
-      <Text style={{ fontSize: 25 }}>WhatsApp Clone</Text>
+const FormLogin = props => {
+  const changeScene = () => {
+    props.navigation.navigate("Register");
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.viewTitle}>
+        <Text style={{ fontSize: 25 }}>WhatsApp Clone</Text>
+      </View>
+      <View style={styles.viewInput}>
+        <TextInput style={styles.input} placeholder="E-mail" />
+        <TextInput style={styles.input} placeholder="Senha" />
+        {console.log("Nav", props)}
+        <TouchableOpacity onPress={changeScene}>
+          <Text style={{ fontSize: 20 }}>
+            Ainda não tem cadastro? cadastre-se!
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.viewButton}>
+        <Button title="Acessar" color="#115E54" onPress={() => false} />
+      </View>
     </View>
-    <View style={styles.viewInput}>
-      <TextInput style={styles.input} placeholder="E-mail" />
-      <TextInput style={styles.input} placeholder="Senha" />
-      <Text style={{ fontSize: 20 }}>Ainda não tem cadastro? cadastre-se!</Text>
-    </View>
-    <View style={styles.viewButton}>
-      <Button title="Acessar" color="#115E54" onPress={() => false} />
-    </View>
-  </View>
-);
+  );
+};
+
+export default FormLogin;
