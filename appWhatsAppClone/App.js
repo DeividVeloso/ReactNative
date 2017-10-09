@@ -7,9 +7,16 @@ import Routes from "./src/routes/";
 //   android: 'Double tap R on your keyboard to reload,\n' +
 //     'Shake or press menu button for dev menu',
 // });
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import reducers from "./src/reducers/";
 
 export default class App extends Component {
   render() {
-    return <Routes />;
+    return (
+      <Provider store={createStore(reducers)}>
+        <Routes />
+      </Provider>
+    );
   }
 }
