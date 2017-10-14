@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Text, Button, TextInput, View, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-import { modificaEmail } from "../../actions/authentication-actions";
+import {
+  modificaEmail,
+  modificaSenha
+} from "../../actions/authentication-actions";
 
 const styles = StyleSheet.create({
   container: {
@@ -39,6 +42,7 @@ const Register = props => {
           value={props.senha}
           style={styles.input}
           placeholder="Senha"
+          onChangeText={text => props.modificaSenha(text)}
         />
       </View>
       <View style={styles.viewButton}>
@@ -57,4 +61,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { modificaEmail })(Register);
+export default connect(mapStateToProps, { modificaEmail, modificaSenha })(
+  Register
+);

@@ -1,0 +1,5 @@
+/*
+FORM-LOGIN
+*/
+export const MODIFICA_EMAIL = "MODIFICA_EMAIL";
+export const MODIFICA_SENHA = "MODIFICA_SENHA";
