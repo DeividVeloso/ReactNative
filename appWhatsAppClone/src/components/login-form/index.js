@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   TextInput,
   View,
-  StyleSheet
+  StyleSheet,
+  Image
 } from "react-native";
 import { connect } from "react-redux";
 
@@ -34,38 +35,45 @@ const styles = StyleSheet.create({
 });
 
 const FormLogin = props => {
-  console.log("State do Redux", props);
   const changeScene = () => {
     props.navigation.navigate("Register");
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.viewTitle}>
-        <Text style={{ fontSize: 25 }}>WhatsApp Clone</Text>
+    <Image
+      style={{ flex: 1, width: null }}
+      source={require("../../imgs/bg.png")}
+    >
+      <View style={styles.container}>
+        <View style={styles.viewTitle}>
+          <Text style={{ fontSize: 25, color: "#fff" }}>WhatsApp Clone</Text>
+        </View>
+        <View style={styles.viewInput}>
+          <TextInput
+            value={props.email}
+            style={styles.input}
+            placeholder="E-mail"
+            placeholderTextColor="#fff"
+          />
+          <TextInput
+            value={props.senha}
+            style={styles.input}
+            placeholder="Senha"
+            placeholderTextColor="#fff"
+            secureTextEntry
+          />
+
+          <TouchableOpacity onPress={changeScene}>
+            <Text style={{ fontSize: 20, color: "#fff" }}>
+              Ainda não tem cadastro? cadastre-se!
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.viewButton}>
+          <Button title="Acessar" color="#115E54" onPress={() => false} />
+        </View>
       </View>
-      <View style={styles.viewInput}>
-        <TextInput
-          value={props.email}
-          style={styles.input}
-          placeholder="E-mail"
-        />
-        <TextInput
-          value={props.senha}
-          style={styles.input}
-          placeholder="Senha"
-        />
-        {console.log("Nav", props)}
-        <TouchableOpacity onPress={changeScene}>
-          <Text style={{ fontSize: 20 }}>
-            Ainda não tem cadastro? cadastre-se!
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.viewButton}>
-        <Button title="Acessar" color="#115E54" onPress={() => false} />
-      </View>
-    </View>
+    </Image>
   );
 };
 

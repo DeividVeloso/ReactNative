@@ -1,5 +1,9 @@
 const INITIAL_STATE = { nome: "", email: "", senha: "" };
-import { MODIFICA_EMAIL, MODIFICA_SENHA } from "../actions/action-types";
+import {
+  MODIFICA_EMAIL,
+  MODIFICA_SENHA,
+  MODIFICA_NOME
+} from "../actions/action-types";
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -13,6 +17,12 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         senha: action.payload
+      };
+    }
+    case MODIFICA_NOME: {
+      return {
+        ...state,
+        nome: action.payload
       };
     }
     default:

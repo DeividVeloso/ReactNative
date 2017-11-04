@@ -1,4 +1,4 @@
-import { MODIFICA_EMAIL, MODIFICA_SENHA } from "./action-types";
+import { MODIFICA_EMAIL, MODIFICA_SENHA, MODIFICA_NOME } from "./action-types";
 //Action Creator é a função
 export const modificaEmail = text => {
   //à action é o retorno dessa função
@@ -11,6 +11,13 @@ export const modificaEmail = text => {
 export const modificaSenha = text => {
   return {
     type: MODIFICA_SENHA,
+    payload: text
+  };
+};
+
+export const modificaNome = text => {
+  return {
+    type: MODIFICA_NOME,
     payload: text
   };
 };

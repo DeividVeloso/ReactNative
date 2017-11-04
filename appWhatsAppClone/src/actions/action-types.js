@@ -3,3 +3,5 @@ FORM-LOGIN
 */
 export const MODIFICA_EMAIL = "MODIFICA_EMAIL";
 export const MODIFICA_SENHA = "MODIFICA_SENHA";
+export const MODIFICA_NOME = "MODIFICA_NOME";
+
