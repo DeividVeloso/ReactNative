@@ -1,3 +1,4 @@
+import firebase from "firebase";
 import { MODIFICA_EMAIL, MODIFICA_SENHA, MODIFICA_NOME } from "./action-types";
 //Action Creator é a função
 export const modificaEmail = text => {
@@ -19,5 +20,16 @@ export const modificaNome = text => {
   return {
     type: MODIFICA_NOME,
     payload: text
+  };
+};
+
+export const registerUser = user => {
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(user.email, user.senha)
+    .then(resp => console.log(resp))
+    .catch(error => console.log(error));
+  return {
+    type: "TESTE"
   };
 };

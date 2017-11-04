@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import {
   modificaEmail,
   modificaSenha,
-  modificaNome
+  modificaNome,
+  registerUser
 } from "../../actions/authentication-actions";
 
 const styles = StyleSheet.create({
@@ -28,6 +29,15 @@ const styles = StyleSheet.create({
 });
 
 const Register = props => {
+  const handleRegister = () => {
+    const user = {
+      nome: props.authentication.nome,
+      email: props.authentication.email,
+      senha: props.authentication.senha
+    };
+    props.registerUser(user);
+  };
+
   return (
     <Image
       style={{ flex: 1, width: null }}
@@ -36,21 +46,21 @@ const Register = props => {
       <View style={styles.container}>
         <View style={styles.viewInput}>
           <TextInput
-            value={props.nome}
+            value={props.authentication.nome}
             style={styles.input}
             placeholder="Nome"
             placeholderTextColor="#fff"
             onChangeText={text => props.modificaNome(text)}
           />
           <TextInput
-            value={props.email}
+            value={props.authentication.email}
             style={styles.input}
             placeholder="E-mail"
             placeholderTextColor="#fff"
             onChangeText={text => props.modificaEmail(text)}
           />
           <TextInput
-            value={props.senha}
+            value={props.authentication.senha}
             style={styles.input}
             placeholder="Senha"
             placeholderTextColor="#fff"
@@ -59,7 +69,7 @@ const Register = props => {
           />
         </View>
         <View style={styles.viewButton}>
-          <Button title="Cadastrar" color="#115E54" onPress={() => false} />
+          <Button title="Cadastrar" color="#115E54" onPress={handleRegister} />
         </View>
       </View>
     </Image>
@@ -67,16 +77,14 @@ const Register = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("state global", state);
   return {
-    nome: state.AutenticacaoReducer.nome,
-    email: state.AutenticacaoReducer.email,
-    senha: state.AutenticacaoReducer.senha
+    authentication: state.authentication
   };
 };
 
 export default connect(mapStateToProps, {
   modificaEmail,
   modificaSenha,
-  modificaNome
+  modificaNome,
+  registerUser
 })(Register);

@@ -50,13 +50,13 @@ const FormLogin = props => {
         </View>
         <View style={styles.viewInput}>
           <TextInput
-            value={props.email}
+            value={props.authentication.email}
             style={styles.input}
             placeholder="E-mail"
             placeholderTextColor="#fff"
           />
           <TextInput
-            value={props.senha}
+            value={props.authentication.senha}
             style={styles.input}
             placeholder="Senha"
             placeholderTextColor="#fff"
@@ -78,8 +78,7 @@ const FormLogin = props => {
 };
 
 const mapStateToProps = state => ({
-  email: state.AutenticacaoReducer.email,
-  senha: state.AutenticacaoReducer.senha
+  authentication: state.authentication
 });
 
 export default connect(mapStateToProps, null)(FormLogin);
