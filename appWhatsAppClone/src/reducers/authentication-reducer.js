@@ -6,6 +6,7 @@ import {
 } from "../actions/action-types";
 
 export default (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case MODIFICA_EMAIL: {
       return {

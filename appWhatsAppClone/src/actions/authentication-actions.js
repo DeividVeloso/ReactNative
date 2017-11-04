@@ -27,9 +27,19 @@ export const registerUser = user => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(user.email, user.senha)
-    .then(resp => console.log(resp))
-    .catch(error => console.log(error));
-  return {
-    type: "TESTE"
-  };
+    .then(resp => registerUserSuccess)
+    .catch(error => registerUserError);
+ 
 };
+
+const registerUserSuccess = () => {
+  return {
+    type: "success"
+  };
+}
+
+const registerUserError = () => {
+  return {
+    type: "error"
+  };
+}
