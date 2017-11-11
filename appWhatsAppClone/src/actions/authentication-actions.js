@@ -24,22 +24,23 @@ export const modificaNome = text => {
 };
 
 export const registerUser = user => {
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(user.email, user.senha)
-    .then(resp => registerUserSuccess)
-    .catch(error => registerUserError);
- 
+  return dispatch => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(user.email, user.senha)
+      .then(resp => registerUserSuccess(dispatch))
+      .catch(error => registerUserError(error, dispatch));
+  };
 };
 
-const registerUserSuccess = () => {
-  return {
+const registerUserSuccess = dispatch => {
+  dispatch({
     type: "success"
-  };
-}
+  });
+};
 
-const registerUserError = () => {
-  return {
+const registerUserError = (error, dispatch) => {
+  dispatch({
     type: "error"
-  };
-}
+  });
+};
