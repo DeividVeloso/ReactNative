@@ -1,5 +1,13 @@
 import firebase from "firebase";
-import { MODIFICA_EMAIL, MODIFICA_SENHA, MODIFICA_NOME, REGISTER_USER_SUCCESS, REGISTER_USER_ERROR } from "./action-types";
+import {
+  MODIFICA_EMAIL,
+  MODIFICA_SENHA,
+  MODIFICA_NOME,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR
+} from "./action-types";
+import { NavigationActions } from "react-navigation";
+
 //Action Creator é a função
 export const modificaEmail = text => {
   //à action é o retorno dessa função
@@ -37,6 +45,7 @@ const registerUserSuccess = dispatch => {
   dispatch({
     type: REGISTER_USER_SUCCESS
   });
+  NavigationActions.navigate("Login");
 };
 
 const registerUserError = (error, dispatch) => {
