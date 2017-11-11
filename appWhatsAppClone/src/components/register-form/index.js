@@ -67,6 +67,11 @@ const Register = props => {
             onChangeText={text => props.modificaSenha(text)}
             secureTextEntry
           />
+          {props.authentication.error ? (
+            <Text style={{ color: "red", fontSize: 18 }}>
+              {props.authentication.error}
+            </Text>
+          ) : null}
         </View>
         <View style={styles.viewButton}>
           <Button title="Cadastrar" color="#115E54" onPress={handleRegister} />

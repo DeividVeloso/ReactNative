@@ -1,8 +1,15 @@
-const INITIAL_STATE = { nome: "", email: "", senha: "" };
+const INITIAL_STATE = {
+  nome: "",
+  email: "",
+  senha: "",
+  error: ""
+};
 import {
   MODIFICA_EMAIL,
   MODIFICA_SENHA,
-  MODIFICA_NOME
+  MODIFICA_NOME,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_ERROR
 } from "../actions/action-types";
 
 export default (state = INITIAL_STATE, action) => {
@@ -24,6 +31,17 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         nome: action.payload
+      };
+    }
+    case REGISTER_USER_SUCCESS: {
+      return {
+        ...state
+      };
+    }
+    case REGISTER_USER_ERROR: {
+      return {
+        ...state,
+        error: action.payload
       };
     }
     default:

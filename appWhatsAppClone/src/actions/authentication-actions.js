@@ -1,5 +1,5 @@
 import firebase from "firebase";
-import { MODIFICA_EMAIL, MODIFICA_SENHA, MODIFICA_NOME } from "./action-types";
+import { MODIFICA_EMAIL, MODIFICA_SENHA, MODIFICA_NOME, REGISTER_USER_SUCCESS, REGISTER_USER_ERROR } from "./action-types";
 //Action Creator é a função
 export const modificaEmail = text => {
   //à action é o retorno dessa função
@@ -35,12 +35,13 @@ export const registerUser = user => {
 
 const registerUserSuccess = dispatch => {
   dispatch({
-    type: "success"
+    type: REGISTER_USER_SUCCESS
   });
 };
 
 const registerUserError = (error, dispatch) => {
   dispatch({
-    type: "error"
+    type: REGISTER_USER_ERROR,
+    payload: error.message
   });
 };
