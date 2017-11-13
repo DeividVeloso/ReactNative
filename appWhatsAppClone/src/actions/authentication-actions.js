@@ -33,10 +33,13 @@ export const modificaNome = text => {
 
 export const registerUser = user => {
   return dispatch => {
-    firebase
+    return firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.senha)
-      .then(resp => registerUserSuccess(dispatch))
+      .then(resp => {
+        registerUserSuccess(dispatch)
+        return resp;
+      })
       .catch(error => registerUserError(error, dispatch));
   };
 };
@@ -45,7 +48,6 @@ const registerUserSuccess = dispatch => {
   dispatch({
     type: REGISTER_USER_SUCCESS
   });
-  NavigationActions.navigate("Login");
 };
 
 const registerUserError = (error, dispatch) => {

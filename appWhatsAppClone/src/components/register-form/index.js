@@ -35,7 +35,9 @@ const Register = props => {
       email: props.authentication.email,
       senha: props.authentication.senha
     };
-    props.registerUser(user);
+    props.registerUser(user).then(resp => {
+      if (resp) props.navigation.navigate("Welcome");
+    });
   };
 
   return (

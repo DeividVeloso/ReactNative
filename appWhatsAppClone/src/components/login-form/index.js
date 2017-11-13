@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const FormLogin = props => {
+const Login = props => {
   const changeScene = () => {
     props.navigation.navigate("Register");
   };
@@ -81,4 +81,4 @@ const mapStateToProps = state => ({
   authentication: state.authentication
 });
 
-export default connect(mapStateToProps, null)(FormLogin);
+export default connect(mapStateToProps, null)(Login);
