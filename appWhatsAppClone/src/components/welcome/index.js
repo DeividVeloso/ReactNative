@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Welcome = () => {
+const Welcome = props => {
   return (
     <Image
       style={{ flex: 1, width: null }}
@@ -28,7 +28,7 @@ const Welcome = () => {
           <Image source={require("../../imgs/logo.png")} />
         </View>
         <View style={styles.button}>
-          <Button title="Fazer Login" onPress={() => false} />
+          <Button title="Fazer Login" onPress={() => props.navigation.navigate("Login")} />
         </View>
       </View>
     </Image>

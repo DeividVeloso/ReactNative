@@ -35,7 +35,9 @@ export default (state = INITIAL_STATE, action) => {
     }
     case REGISTER_USER_SUCCESS: {
       return {
-        ...state
+        ...state,
+        nome: "", 
+        senha: ""
       };
     }
     case REGISTER_USER_ERROR: {
