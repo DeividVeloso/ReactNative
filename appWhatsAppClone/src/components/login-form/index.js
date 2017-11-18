@@ -74,11 +74,11 @@ class Login extends Component {
               secureTextEntry
               onChangeText={this.props.modificaSenha}
             />
-            {this.props.authentication.errorLogin && (
-              <Text style={{ color: "red", fontSize: 18 }}>
-                {this.props.authentication.errorLogin}
-              </Text>
-            )}
+
+            <Text style={{ color: "red", fontSize: 18 }}>
+              {this.props.authentication.errorLogin}
+            </Text>
+
             <TouchableOpacity onPress={this.changeScene}>
               <Text style={{ fontSize: 20, color: "#fff" }}>
                 Ainda não tem cadastro? cadastre-se!
