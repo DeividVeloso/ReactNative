@@ -1,10 +1,14 @@
 import firebase from "firebase";
+import b64 from "base-64";
+
 import {
   MODIFICA_EMAIL,
   MODIFICA_SENHA,
   MODIFICA_NOME,
   REGISTER_USER_SUCCESS,
-  REGISTER_USER_ERROR
+  REGISTER_USER_ERROR,
+  LOGIN_USER_ERROR,
+  LOGIN_USER_SUCCESS
 } from "./action-types";
 import { NavigationActions } from "react-navigation";
 
@@ -37,7 +41,14 @@ export const registerUser = user => {
       .auth()
       .createUserWithEmailAndPassword(user.email, user.senha)
       .then(resp => {
-        registerUserSuccess(dispatch)
+        //Gravando no Database do firebase
+        //contatos -> email -> nome
+        firebase
+          .database()
+          .ref(`/contatos/${b64.encode(user.email)}`)
+          .push({ nome: user.nome })
+          .then(values => registerUserSuccess(dispatch));
+
         return resp;
       })
       .catch(error => registerUserError(error, dispatch));
@@ -55,4 +66,24 @@ const registerUserError = (error, dispatch) => {
     type: REGISTER_USER_ERROR,
     payload: error.message
   });
+};
+
+export const authenticationUser = (email, senha) => dispatch => {
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, senha)
+    .then(resp => dispatch(loginUsuarioSucesso()))
+    .catch(error => dispatch(loginUsuarioError(error)));
+};
+
+const loginUsuarioSucesso = () => {
+  return {
+    type: LOGIN_USER_SUCCESS
+  };
+};
+const loginUsuarioError = error => {
+  return {
+    type: LOGIN_USER_ERROR,
+    payload: error.message
+  };
 };
