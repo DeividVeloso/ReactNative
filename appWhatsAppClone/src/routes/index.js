@@ -8,12 +8,29 @@ import Main from "../components/main/";
 
 export default (Routes = StackNavigator(
   {
-    Login: { screen: Login },
-    Register: { screen: Register },
-    Welcome: { screen: Welcome },
-    Main: { screen: Main }
+    Login: {
+      screen: Login,
+      navigationOptions: { header: null }
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: {
+        headerStyle: { backgroundColor: "#115E54" },
+        title: "Cadastro",
+        headerTintColor: "#fff", //BackButton Color <-
+        headerTitleStyle: { alignItem: "center", color: "white" }
+      }
+    },
+    Welcome: {
+      screen: Welcome,
+      navigationOptions: { header: null }
+    },
+    Main: {
+      screen: Main,
+      navigationOptions: { header: null }
+    }
   },
   {
-    headerMode: "none"
+    headerMode: "screen"
   }
 ));

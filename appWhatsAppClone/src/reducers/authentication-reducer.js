@@ -1,10 +1,3 @@
-const INITIAL_STATE = {
-  nome: "",
-  email: "",
-  senha: "",
-  error: "",
-  errorLogin: ""
-};
 import {
   MODIFICA_EMAIL,
   MODIFICA_SENHA,
@@ -13,6 +6,14 @@ import {
   REGISTER_USER_ERROR,
   LOGIN_USER_ERROR
 } from "../actions/action-types";
+
+const INITIAL_STATE = {
+  nome: "",
+  email: "",
+  senha: "",
+  error: "",
+  errorLogin: ""
+};
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action);
