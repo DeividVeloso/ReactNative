@@ -42,7 +42,13 @@ const styles = StyleSheet.create({
 class Login extends Component {
   authenticationUser = () => {
     const { email, senha } = this.props.authentication;
-    this.props.authenticationUser(email, senha);
+    this.props
+      .authenticationUser(email, senha)
+      .then(resp => {
+        if(resp.type !== "LOGIN_USER_ERROR"){
+          this.props.navigation.navigate("Main");
+        }
+      })
   };
   changeScene = () => {
     this.props.navigation.navigate("Register");

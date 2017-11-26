@@ -69,7 +69,7 @@ const registerUserError = (error, dispatch) => {
 };
 
 export const authenticationUser = (email, senha) => dispatch => {
-  firebase
+  return firebase
     .auth()
     .signInWithEmailAndPassword(email, senha)
     .then(resp => dispatch(loginUsuarioSucesso()))
