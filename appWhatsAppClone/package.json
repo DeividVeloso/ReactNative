@@ -20,6 +20,8 @@
     "babel-jest": "21.2.0",
     "babel-preset-react-native": "4.0.0",
     "jest": "21.2.1",
+    "react-native-gesture-handler": "^1.0.0-alpha.35",
+    "react-native-tab-view": "0.0.72",
     "react-test-renderer": "16.0.0-beta.5"
   },
   "jest": {
