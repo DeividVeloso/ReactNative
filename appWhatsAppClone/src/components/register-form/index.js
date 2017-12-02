@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Text, Button, TextInput, View, StyleSheet, Image } from "react-native";
+import {
+  Text,
+  Button,
+  TextInput,
+  View,
+  StyleSheet,
+  Image,
+  ActivityIndicator
+} from "react-native";
 import { connect } from "react-redux";
 import {
   modificaEmail,
@@ -40,6 +48,15 @@ const Register = props => {
     });
   };
 
+  const renderBtnIndicator = () => {
+    if (props.authentication.loading_register) {
+      console.log("PASSEI AQUI PORAAA REGISTER");
+      return <ActivityIndicator size="large" />;
+    }
+    return (
+      <Button title="Cadastrar" color="#115E54" onPress={handleRegister} />
+    );
+  };
   return (
     <Image
       style={{ flex: 1, width: null }}
@@ -75,9 +92,7 @@ const Register = props => {
             </Text>
           ) : null}
         </View>
-        <View style={styles.viewButton}>
-          <Button title="Cadastrar" color="#115E54" onPress={handleRegister} />
-        </View>
+        <View style={styles.viewButton}>{renderBtnIndicator()}</View>
       </View>
     </Image>
   );

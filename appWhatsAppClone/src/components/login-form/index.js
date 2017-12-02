@@ -6,7 +6,8 @@ import {
   TextInput,
   View,
   StyleSheet,
-  Image
+  Image,
+  ActivityIndicator
 } from "react-native";
 import { connect } from "react-redux";
 import {
@@ -42,16 +43,28 @@ const styles = StyleSheet.create({
 class Login extends Component {
   authenticationUser = () => {
     const { email, senha } = this.props.authentication;
-    this.props
-      .authenticationUser(email, senha)
-      .then(resp => {
-        if(resp.type !== "LOGIN_USER_ERROR"){
-          this.props.navigation.navigate("Main");
-        }
-      })
+    this.props.authenticationUser(email, senha).then(resp => {
+      if (resp.type !== "LOGIN_USER_ERROR") {
+        this.props.navigation.navigate("Main");
+      }
+    });
   };
   changeScene = () => {
     this.props.navigation.navigate("Register");
+  };
+
+  renderBtnAcessar = () => {
+    if (this.props.authentication.loading) {
+      console.log("PASSEI AQUI PORAAA LOGIN");
+      return <ActivityIndicator />;
+    }
+    return (
+      <Button
+        title="Acessar"
+        color="#115E54"
+        onPress={this.authenticationUser}
+      />
+    );
   };
 
   render() {
@@ -91,13 +104,7 @@ class Login extends Component {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.viewButton}>
-            <Button
-              title="Acessar"
-              color="#115E54"
-              onPress={this.authenticationUser}
-            />
-          </View>
+          <View style={styles.viewButton}>{this.renderBtnAcessar()}</View>
         </View>
       </Image>
     );

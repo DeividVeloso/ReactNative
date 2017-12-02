@@ -4,7 +4,10 @@ import {
   MODIFICA_NOME,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
-  LOGIN_USER_ERROR
+  LOGIN_USER_ERROR,
+  LOGIN_REQUESTED,
+  LOGIN_USER_SUCCESS,
+  REGISTER_USER_REQUESTED
 } from "../actions/action-types";
 
 const INITIAL_STATE = {
@@ -12,7 +15,9 @@ const INITIAL_STATE = {
   email: "",
   senha: "",
   error: "",
-  errorLogin: ""
+  errorLogin: "",
+  loading: "",
+  loading_register: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -40,19 +45,40 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         nome: "",
-        senha: ""
+        senha: "",
+        loading_register: false
       };
     }
     case REGISTER_USER_ERROR: {
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
+        loading_register: false
+      };
+    }
+    case REGISTER_USER_REQUESTED: {
+      return {
+        ...state,
+        loading_register: true
       };
     }
     case LOGIN_USER_ERROR: {
       return {
         ...state,
-        errorLogin: action.payload
+        errorLogin: action.payload,
+        loading: false
+      };
+    }
+    case LOGIN_USER_SUCCESS: {
+      return {
+        ...state,
+        loading: false
+      };
+    }
+    case LOGIN_REQUESTED: {
+      return {
+        ...state,
+        loading: true
       };
     }
     default:

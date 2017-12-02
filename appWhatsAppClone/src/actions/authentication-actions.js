@@ -8,9 +8,10 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_ERROR,
   LOGIN_USER_ERROR,
-  LOGIN_USER_SUCCESS
+  LOGIN_USER_SUCCESS,
+  LOGIN_REQUESTED,
+  REGISTER_USER_REQUESTED
 } from "./action-types";
-import { NavigationActions } from "react-navigation";
 
 //Action Creator é a função
 export const modificaEmail = text => {
@@ -37,6 +38,10 @@ export const modificaNome = text => {
 
 export const registerUser = user => {
   return dispatch => {
+    dispatch({
+      type: REGISTER_USER_REQUESTED,
+      payload: ""
+    });
     return firebase
       .auth()
       .createUserWithEmailAndPassword(user.email, user.senha)
@@ -69,6 +74,10 @@ const registerUserError = (error, dispatch) => {
 };
 
 export const authenticationUser = (email, senha) => dispatch => {
+  dispatch({
+    type: LOGIN_REQUESTED,
+    payload: ""
+  });
   return firebase
     .auth()
     .signInWithEmailAndPassword(email, senha)
