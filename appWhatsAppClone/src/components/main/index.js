@@ -7,8 +7,8 @@ const initialLayout = {
   width: Dimensions.get("window").width
 };
 
-import Chats from "../chats";
-import Contacts from "../contacts";
+import ListChats from "../chats/list-chats";
+import ListContacts from "../contacts/list-contacts";
 
 export default class TabViewExample extends Component {
   state = {
@@ -21,11 +21,11 @@ export default class TabViewExample extends Component {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBarMenu {...props} />;
+  _renderHeader = props => <TabBarMenu {...props} {...this.props} />;
 
   _renderScene = SceneMap({
-    first: Chats,
-    second: Contacts
+    first: ListChats,
+    second: ListContacts
   });
 
   render() {

@@ -5,6 +5,7 @@ import Login from "../components/login-form/";
 import Register from "../components/register-form/";
 import Welcome from "../components/welcome/";
 import Main from "../components/main/";
+import AddContact from "../components/contacts/add-contact";
 
 export default (Routes = StackNavigator(
   {
@@ -18,7 +19,7 @@ export default (Routes = StackNavigator(
         headerStyle: { backgroundColor: "#115E54" },
         title: "Cadastro",
         headerTintColor: "#fff", //BackButton Color <-
-        headerTitleStyle: { alignItem: "center", color: "white" }
+        headerTitleStyle: { alignItems: "center", color: "white" }
       }
     },
     Welcome: {
@@ -28,6 +29,15 @@ export default (Routes = StackNavigator(
     Main: {
       screen: Main,
       navigationOptions: { header: null }
+    },
+    AddContact: {
+      screen: AddContact,
+      navigationOptions: {
+        headerStyle: { backgroundColor: "#115E54" },
+        title: "Adicionar Contato",
+        headerTintColor: "#fff", //BackButton Color <-
+        headerTitleStyle: { alignItems: "center", color: "white" }
+      }
     }
   },
   {

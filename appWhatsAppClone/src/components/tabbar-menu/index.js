@@ -1,15 +1,42 @@
 import React from "react";
-import { View, Text, StatusBar } from "react-native";
+import { View, Text, StatusBar, Image, TouchableOpacity } from "react-native";
 import { TabBar } from "react-native-tab-view";
 
-export default props => (
-  <View style={{ backgroundColor: "#115E54", elevation: 4, marginBottom: 6 }}>
-    <StatusBar backgroundColor="#114D44" />
-    <View style={{ height: 50, justifyContent: "center" }}>
-      <Text style={{ color: "#fff", fontSize: 20, marginLeft: 20 }}>
-        WhatsApp Clone
-      </Text>
+const TabMenu = props => {
+  console.log(props);
+  return (
+    <View style={{ backgroundColor: "#115E54", elevation: 4, marginBottom: 6 }}>
+      <StatusBar backgroundColor="#114D44" />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between"
+        }}
+      >
+        <View
+          style={{
+            height: 50,
+            justifyContent: "center"
+          }}
+        >
+          <Text style={{ color: "#fff", fontSize: 20, marginLeft: 20 }}>
+            WhatsApp Clone
+          </Text>
+        </View>
+        <View style={{ flexDirection: "row", marginRight: 20 }}>
+          <View style={{ justifyContent: "center", width: 50 }}>
+            <TouchableOpacity onPress={() => props.navigation.navigate("AddContact")}>
+              <Image source={require("../../imgs/adicionar-contato.png")} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ justifyContent: "center" }}>
+            <Text style={{ fontSize: 20, color: "#fff" }}>Sair</Text>
+          </View>
+        </View>
+      </View>
+      <TabBar {...props} style={{ backgroundColor: "#115E54", elevation: 0 }} />
     </View>
-    <TabBar {...props} style={{ backgroundColor: "#115E54", elevation: 0 }} />
-  </View>
-);
+  );
+};
+
+export default TabMenu;
