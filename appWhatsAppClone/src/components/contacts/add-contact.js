@@ -14,7 +14,7 @@ const AddContact = props => {
           value={props.app.addContactEmail}
         />
         {props.app.success ? (
-          <Text style={{ color: "green", fontSize: 18 }}>
+          <Text style={{ color: "green", fontSize: 20 }}>
             {props.app.success}
           </Text>
         ) : (

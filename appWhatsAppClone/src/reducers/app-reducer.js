@@ -1,6 +1,6 @@
 import * as types from "../actions/action-types";
 
-const INITIAL_STATE = { addContactEmail: "", error: "", success: "" };
+const INITIAL_STATE = { addContactEmail: "", error: "", success: null };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
