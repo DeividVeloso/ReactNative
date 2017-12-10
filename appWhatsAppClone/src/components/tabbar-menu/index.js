@@ -1,9 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { View, Text, StatusBar, Image, TouchableOpacity } from "react-native";
 import { TabBar } from "react-native-tab-view";
+import { resetNewContact } from "../../actions/app-actions";
 
 const TabMenu = props => {
-  console.log(props);
+  console.log("TABMenu", props);
+  const onPressAdd = () => {
+    props.resetNewContact();
+    props.navigation.navigate("AddContact");
+  };
+
   return (
     <View style={{ backgroundColor: "#115E54", elevation: 4, marginBottom: 6 }}>
       <StatusBar backgroundColor="#114D44" />
@@ -25,7 +33,7 @@ const TabMenu = props => {
         </View>
         <View style={{ flexDirection: "row", marginRight: 20 }}>
           <View style={{ justifyContent: "center", width: 50 }}>
-            <TouchableOpacity onPress={() => props.navigation.navigate("AddContact")}>
+            <TouchableOpacity onPress={onPressAdd}>
               <Image source={require("../../imgs/adicionar-contato.png")} />
             </TouchableOpacity>
           </View>
@@ -38,5 +46,6 @@ const TabMenu = props => {
     </View>
   );
 };
-
-export default TabMenu;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ resetNewContact }, dispatch);
+export default connect(null, mapDispatchToProps)(TabMenu);

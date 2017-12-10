@@ -4,6 +4,15 @@ import { View, TextInput, Button, Text } from "react-native";
 import { bindActionCreators } from "redux";
 import { modifyAddContact, addContact } from "../../actions/app-actions";
 const AddContact = props => {
+  if (props.app.success) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text style={{ color: "green", fontSize: 20 }}>
+          Cadastro realizado com sucesso
+        </Text>
+      </View>
+    );
+  }
   return (
     <View style={{ flex: 1, justifyContent: "center", padding: 20 }}>
       <View style={{ flex: 1, justifyContent: "center" }}>
@@ -13,13 +22,7 @@ const AddContact = props => {
           onChangeText={props.modifyAddContact}
           value={props.app.addContactEmail}
         />
-        {props.app.success ? (
-          <Text style={{ color: "green", fontSize: 20 }}>
-            {props.app.success}
-          </Text>
-        ) : (
-          <Text style={{ color: "red", fontSize: 18 }}>{props.app.error}</Text>
-        )}
+        <Text style={{ color: "red", fontSize: 18 }}>{props.app.error}</Text>
       </View>
       <View style={{ flex: 1 }}>
         <Button

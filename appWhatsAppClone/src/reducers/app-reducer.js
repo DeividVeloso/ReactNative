@@ -22,6 +22,11 @@ export default (state = INITIAL_STATE, action) => {
         success: action.payload
       };
     }
+    case types.ADD_CONTACT_RESET: {
+      return {
+        ...INITIAL_STATE
+      };
+    }
     default:
       return state;
   }

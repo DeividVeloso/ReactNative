@@ -46,3 +46,5 @@ const addContactSuccess = message => ({
   type: types.ADD_CONTACT_SUCCESS,
   payload: message
 });
+
+export const resetNewContact = () => ({ type: types.ADD_CONTACT_RESET });
