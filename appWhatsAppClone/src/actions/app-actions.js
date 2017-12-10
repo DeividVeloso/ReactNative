@@ -48,3 +48,19 @@ const addContactSuccess = message => ({
 });
 
 export const resetNewContact = () => ({ type: types.ADD_CONTACT_RESET });
+
+export const listContactsFetch = dispatch => {
+  const { currentUser } = firebase.auth();
+  let emailLoggedUser = b64.encode(currentUser.email);
+
+  firebase
+    .database()
+    .ref(`/usuario_contatos/${emailLoggedUser}`)
+    .on("value", snapshot => {
+      console.log("ACTIN", snapshot);
+      dispatch({
+        type: types.LIST_CONTACT_USER,
+        payload: snapshot.val()
+      });
+    });
+};

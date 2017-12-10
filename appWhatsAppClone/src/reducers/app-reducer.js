@@ -1,6 +1,11 @@
 import * as types from "../actions/action-types";
 
-const INITIAL_STATE = { addContactEmail: "", error: "", success: null };
+const INITIAL_STATE = {
+  addContactEmail: "",
+  error: "",
+  success: null,
+  contacts: null
+};
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -25,6 +30,12 @@ export default (state = INITIAL_STATE, action) => {
     case types.ADD_CONTACT_RESET: {
       return {
         ...INITIAL_STATE
+      };
+    }
+    case types.LIST_CONTACT_USER: {
+      return {
+        ...state,
+        contacts: action.payload
       };
     }
     default:
