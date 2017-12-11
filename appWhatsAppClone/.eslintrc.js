@@ -1,5 +1,5 @@
 module.exports = {
-  parser: "bable-eslint",
+  parser: "babel-eslint",
   extends: "airbnb",
   plugins: ["react", "jsx-a11y", "import"]
 };

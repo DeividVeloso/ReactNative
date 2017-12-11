@@ -6,7 +6,6 @@ import { TabBar } from "react-native-tab-view";
 import { resetNewContact } from "../../actions/app-actions";
 
 const TabMenu = props => {
-  console.log("TABMenu", props);
   const onPressAdd = () => {
     props.resetNewContact();
     props.navigation.navigate("AddContact");
