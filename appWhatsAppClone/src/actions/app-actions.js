@@ -56,7 +56,6 @@ export const listContactsFetch = () => dispatch => {
     .database()
     .ref(`/usuario_contatos/${emailLoggedUser}`)
     .on("value", snapshot => {
-      console.log("QQQQ", snapshot.val());
       dispatch({
         type: types.LIST_CONTACT_USER,
         payload: snapshot.val()

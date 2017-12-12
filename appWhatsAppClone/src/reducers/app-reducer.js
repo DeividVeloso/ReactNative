@@ -1,10 +1,10 @@
-import * as types from "../actions/action-types";
+import * as types from '../actions/action-types';
 
 const INITIAL_STATE = {
-  addContactEmail: "",
-  error: "",
+  addContactEmail: '',
+  error: '',
   success: null,
-  contacts: null
+  contacts: null,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,30 +12,30 @@ export default (state = INITIAL_STATE, action) => {
     case types.ADD_CONTACT_EMAIL_MODIFIED: {
       return {
         ...state,
-        addContactEmail: action.payload
+        addContactEmail: action.payload,
       };
     }
     case types.ADD_CONTACT_ERROR: {
       return {
         ...state,
-        error: action.payload
+        error: action.payload,
       };
     }
     case types.ADD_CONTACT_SUCCESS: {
       return {
         ...state,
-        success: action.payload
+        success: action.payload,
       };
     }
     case types.ADD_CONTACT_RESET: {
       return {
-        ...INITIAL_STATE
+        ...INITIAL_STATE,
       };
     }
     case types.LIST_CONTACT_USER: {
       return {
         ...state,
-        contacts: action.payload
+        contacts: action.payload,
       };
     }
     default:
