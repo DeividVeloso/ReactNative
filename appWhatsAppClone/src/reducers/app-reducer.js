@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   error: '',
   success: null,
   contacts: null,
+  message: '',
 };
 
 export default (state = INITIAL_STATE, action) => {

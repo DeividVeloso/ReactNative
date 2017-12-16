@@ -29,9 +29,15 @@ class ListContacts extends Component {
   }
 
   renderRow(contato) {
-    console.log('PROS', this.props);
+    console.log('PROS', this.props.navigation);
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate('Chat')}>
+      <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate('Chat', {
+            contact: { name: contato.nome, email: contato.email },
+          })
+        }
+      >
         <View
           style={{
             flex: 1,
