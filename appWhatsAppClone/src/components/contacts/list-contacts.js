@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, Text, ListView, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { listContactsFetch } from '../../actions/app-actions';
+import Chat from '../chats/chat';
 
 class ListContacts extends Component {
   // Só executa após a mudança no redux de contacts
@@ -27,24 +28,31 @@ class ListContacts extends Component {
     this.sourceData = ds.cloneWithRows(contacts);
   }
 
+  renderRow(contato) {
+    console.log('PROS', this.props);
+    return (
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('Chat')}>
+        <View
+          style={{
+            flex: 1,
+            padding: 20,
+            borderBottomWidth: 1,
+            borderColor: '#CCC',
+          }}
+        >
+          <Text style={{ fontSize: 25 }}>{contato.nome}</Text>
+          <Text style={{ fontSize: 18 }}>{contato.email}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     return (
       <ListView
         enableEmptySections // para remover o alerta de renderização de linhas vazias
         dataSource={this.sourceData}
-        renderRow={data => (
-          <View
-            style={{
-              flex: 1,
-              padding: 20,
-              borderBottomWidth: 1,
-              borderColor: '#CCC',
-            }}
-          >
-            <Text style={{ fontSize: 25 }}>{data.nome}</Text>
-            <Text style={{ fontSize: 18 }}>{data.email}</Text>
-          </View>
-        )}
+        renderRow={data => this.renderRow(data)}
       />
     );
   }

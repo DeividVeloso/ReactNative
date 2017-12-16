@@ -1,22 +1,20 @@
-import React, { Component } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import { TabViewAnimated, SceneMap } from "react-native-tab-view";
-import TabBarMenu from "../tabbar-menu/";
+import React, { Component } from 'react';
+import { View, StyleSheet, Dimensions } from 'react-native';
+import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
+import TabBarMenu from '../tabbar-menu/';
+
 const initialLayout = {
   height: 0,
-  width: Dimensions.get("window").width
+  width: Dimensions.get('window').width,
 };
 
-import ListChats from "../chats/list-chats";
-import ListContacts from "../contacts/list-contacts";
+import ListChats from '../chats/list-chats';
+import ListContacts from '../contacts/list-contacts';
 
 export default class TabViewExample extends Component {
   state = {
     index: 0,
-    routes: [
-      { key: "first", title: "Conversas" },
-      { key: "second", title: "Contatos" }
-    ]
+    routes: [{ key: 'first', title: 'Conversas' }, { key: 'second', title: 'Contatos' }],
   };
 
   _handleIndexChange = index => this.setState({ index });
@@ -25,7 +23,8 @@ export default class TabViewExample extends Component {
 
   _renderScene = SceneMap({
     first: ListChats,
-    second: ListContacts
+    //Passando o Navigate para a Lista de Contatos para que eu possa navegar para conversa.
+    second: () => <ListContacts {...this.props} />, 
   });
 
   render() {
@@ -44,6 +43,6 @@ export default class TabViewExample extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
