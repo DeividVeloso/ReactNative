@@ -61,9 +61,25 @@ export const listContactsFetch = () => (dispatch) => {
     });
 };
 
-export const sendMessage = (message, name, email) => {
-  console.log('MSG', message);
-  console.log('MSG', name);
-  console.log('MSG', email);
-  return { type: 'zxa', payload: message };
+export const sendMessage = (message, contactName, contactEmail) => (dispatch) => {
+  // dados do contato
+  const { currentUser } = firebase.auth();
+  const currentUserEmail = currentUser.email;
+  // dados do usuário logado
+  const currentUserEmailB64 = b64.encode(currentUserEmail);
+  const contactEmailB64 = b64.encode(contactEmail);
+
+  // EndPoint que registra uma mensagem para o usuário logado
+  firebase
+    .database()
+    .ref(`/mensagens/${currentUserEmailB64}/${contactEmailB64}`)
+    .push({ message, tipo: 'e' }) // Envio
+    .then(() => {
+      // Registra a mesma mensagem para o contato do usuário logado.
+      firebase
+        .database()
+        .ref(`/mensagens/${contactEmailB64}/${currentUserEmailB64}`)
+        .push({ message, tipo: 'r' })
+        .then(() => dispatch({ type: 'zxa', payload: message })); // Recebimento
+    });
 };
