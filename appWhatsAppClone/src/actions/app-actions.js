@@ -79,7 +79,31 @@ export const sendMessage = (message, contactName, contactEmail) => (dispatch) =>
       firebase
         .database()
         .ref(`/mensagens/${contactEmailB64}/${currentUserEmailB64}`)
-        .push({ message, tipo: 'r' })
-        .then(() => dispatch({ type: 'zxa', payload: message })); // Recebimento
+        .push({ message, tipo: 'r' }) // Recebimento
+        .then(() => dispatch({ type: 'zxa', payload: message }));
+    })
+    .then(() => {
+      // Armazenar os cabeçalhos do usuário autenticado, lista de conversas.
+      firebase
+        .database()
+        .ref(`/usuario_conversas/${currentUserEmailB64}/${contactEmailB64}`)
+        // Usado para atualizar o último registro existente.
+        .set({ nome: contactName, email: contactEmail });
+    })
+    .then(() => {
+      firebase
+        .database()
+        .ref(`/contatos/${currentUserEmailB64}`)
+        .once('value')
+        .then((snapshot) => {
+          const dadosCurrentUser = _.head(_.values(snapshot.val()));
+
+          // Armazenar os cabeçalhos do contato, lista de conversas.
+          firebase
+            .database()
+            .ref(`/usuario_conversas/${contactEmailB64}/${currentUserEmailB64}`)
+            // Usado para atualizar o último registro existente.
+            .set({ nome: dadosCurrentUser.nome, email: currentUser.email });
+        });
     });
 };
