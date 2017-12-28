@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, StyleSheet, AppRegistry } from "react-native";
-// import QuestionItem from './components/question-item';
-import RadioButton from "./src/components/radio-button";
-import _ from "lodash";
-
+import { View, Text, StyleSheet, AppRegistry } from "react-native";
+import RadioForm from "./src/components/radio-form";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -11,7 +8,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   title: { color: "#000", fontSize: 18 },
-  viewQuestion: { flex: 9, padding: 10 },
+
   question: { marginVertical: 5 },
   options: { marginVertical: 5 }
 });
@@ -24,47 +21,22 @@ export class pocs extends Component {
       answer: "",
       questions: {
         "01": {
-          questao: "Qual seu nome?",
-          a: "Deivid",
-          b: "LP",
-          c: "Edu",
-          d: "Luizão"
-        },
-        "02": {
-          questao: "Qual sua idade?",
-          a: "20",
-          b: "26",
-          c: "39",
-          d: "25"
+          1: "Deivid",
+          2: "LP",
+          3: "Edu",
+          4: "Luizão"
         }
       }
     };
   }
 
-  renderButtons(questions) {
-    return _.map(questions, (value, id) => {
-      //Transforma em Array
-      return _.map(_.values(value), (item, index) => {
-        return (
-          <RadioButton
-            stylesLabel={{ color: "red", fontSize: 18 }}
-            text={`${index} ${item}`}
-            selectedItem={this.state.selectedItem}
-            onPress={id => this.setState({ selectedItem: id })}
-            id={`${id}${index}`}
-          />
-        );
-      });
-    });
-  }
-
   render() {
     return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.viewQuestion}>
-          {this.renderButtons(this.state.questions)}
-        </View>
-      </ScrollView>
+      <RadioForm
+        question="Qual seu nome?"
+        options={this.state.questions["01"]}
+        onSelected={id => console.log(id)}
+      />
     );
   }
 }
