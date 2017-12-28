@@ -1,80 +1,79 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, { Component } from "react";
+import { ScrollView, View, Text, StyleSheet, AppRegistry } from "react-native";
+// import QuestionItem from './components/question-item';
+import RadioButton from "./src/components/radio-button";
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  TextInput
-} from 'react-native';
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "space-between"
+  },
+  title: { color: "#000", fontSize: 18 },
+  viewQuestion: { flex: 9, padding: 10 },
+  question: { marginVertical: 5 },
+  options: { marginVertical: 5 }
+});
 
-import SmsListener from 'react-native-android-sms-listener'
-
-export default class pocs extends Component {
+export class pocs extends Component {
   constructor(props) {
-    super(props)
-    this.state = { textCpf: '', token: '' }
-    let subscription = SmsListener.addListener(message => {
-      var value = message.body;
-      var numberPattern = /\d+/g;
-      value = value.match(numberPattern).join([]);
-      this.setState({ token: value })
-    })
+    super(props);
+    this.state = {
+      selectedItem: false,
+      answer: ""
+    };
   }
 
-  _handleText(e) {
-    if (e.length <= 14) {
-      this.setState({ textCpf: this._handleCPF(e) })
-    }
-  }
+  // onSelectItem(selectedRadio, answer) {
+  //   const radio = {};
+  //   radio[`selectedRadio${selectedRadio}`] = selectedRadio;
 
-  _handleCPF(cpf) {
-    cpf = cpf.replace(/\D/g, "")
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+  //   this.setState({
+  //     selectedItem
+  //     ...radio,
+  //     answer
+  //   });
 
-    return cpf
-  }
-
-  _handleSMS(e) {
-    this.setState({ token: e })
-  }
-
-
+  //   console.log("RESPOSTA", answer, selectedRadio);
+  // }
 
   render() {
     return (
-      <View  style={styles.view}>
-        <TextInput
-          placeholder={'   .   .   -  '}
-          value={this.state.textCpf}
-          keyboardType={'numeric'}
-          onChangeText={(e) => this._handleText(e)}
-        />
-        <TextInput 
-          placeholder={'Token'}
-          value={this.state.token}
-          keyboardType={'numeric'}
-          onChangeText={(e) => this._handleSMS(e)}
-        />
-      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View>
+          <Text style={styles.title}>1</Text>
+          <RadioButton
+            stylesLabel={{ color: "red", fontSize: 18 }}
+            text="1 - TESTE"
+            selectedItem={this.state.selectedItem}
+            onPress={id => this.setState({ selectedItem: id })}
+            id="1"
+          />
+          <RadioButton
+            stylesLabel={{ color: "red", fontSize: 18 }}
+            text="2 - TESTE"
+            selectedItem={this.state.selectedItem}
+            onPress={id => this.setState({ selectedItem: id })}
+            id="2"
+          />
+          <RadioButton
+            stylesLabel={{ color: "red", fontSize: 18 }}
+            text="3 - TESTE"
+            selectedItem={this.state.selectedItem}
+            onPress={id => this.setState({ selectedItem: id })}
+            id="3"
+          />
+          <RadioButton
+            stylesLabel={{ color: "red", fontSize: 18 }}
+            text="4 - TESTE"
+            selectedItem={this.state.selectedItem}
+            onPress={id => this.setState({ selectedItem: id })}
+            id="4"
+          />
+        </View>
+      </ScrollView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  view: {
-    justifyContent: 'center',
-    flex:1
-  }
-});
-
-
-
-AppRegistry.registerComponent('pocs', () => pocs);
+AppRegistry.registerComponent("pocs", () => pocs);
