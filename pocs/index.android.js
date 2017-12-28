@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet, AppRegistry } from "react-native";
 // import QuestionItem from './components/question-item';
 import RadioButton from "./src/components/radio-button";
+import _ from "lodash";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,56 +21,48 @@ export class pocs extends Component {
     super(props);
     this.state = {
       selectedItem: false,
-      answer: ""
+      answer: "",
+      questions: {
+        "01": {
+          questao: "Qual seu nome?",
+          a: "Deivid",
+          b: "LP",
+          c: "Edu",
+          d: "Luizão"
+        },
+        "02": {
+          questao: "Qual sua idade?",
+          a: "20",
+          b: "26",
+          c: "39",
+          d: "25"
+        }
+      }
     };
   }
 
-  // onSelectItem(selectedRadio, answer) {
-  //   const radio = {};
-  //   radio[`selectedRadio${selectedRadio}`] = selectedRadio;
-
-  //   this.setState({
-  //     selectedItem
-  //     ...radio,
-  //     answer
-  //   });
-
-  //   console.log("RESPOSTA", answer, selectedRadio);
-  // }
+  renderButtons(questions) {
+    return _.map(questions, (value, id) => {
+      //Transforma em Array
+      return _.map(_.values(value), (item, index) => {
+        return (
+          <RadioButton
+            stylesLabel={{ color: "red", fontSize: 18 }}
+            text={`${index} ${item}`}
+            selectedItem={this.state.selectedItem}
+            onPress={id => this.setState({ selectedItem: id })}
+            id={`${id}${index}`}
+          />
+        );
+      });
+    });
+  }
 
   render() {
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <View>
-          <Text style={styles.title}>1</Text>
-          <RadioButton
-            stylesLabel={{ color: "red", fontSize: 18 }}
-            text="1 - TESTE"
-            selectedItem={this.state.selectedItem}
-            onPress={id => this.setState({ selectedItem: id })}
-            id="1"
-          />
-          <RadioButton
-            stylesLabel={{ color: "red", fontSize: 18 }}
-            text="2 - TESTE"
-            selectedItem={this.state.selectedItem}
-            onPress={id => this.setState({ selectedItem: id })}
-            id="2"
-          />
-          <RadioButton
-            stylesLabel={{ color: "red", fontSize: 18 }}
-            text="3 - TESTE"
-            selectedItem={this.state.selectedItem}
-            onPress={id => this.setState({ selectedItem: id })}
-            id="3"
-          />
-          <RadioButton
-            stylesLabel={{ color: "red", fontSize: 18 }}
-            text="4 - TESTE"
-            selectedItem={this.state.selectedItem}
-            onPress={id => this.setState({ selectedItem: id })}
-            id="4"
-          />
+        <View style={styles.viewQuestion}>
+          {this.renderButtons(this.state.questions)}
         </View>
       </ScrollView>
     );
