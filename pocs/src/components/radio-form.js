@@ -4,14 +4,20 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from "react-native";
 import _ from "lodash";
 import { compose, withState, withHandlers } from "recompose";
 import RadioButton from "./radio-button";
 
 const styles = StyleSheet.create({
-  viewQuestion: { flex: 1, padding: 10 }
+  viewQuestion: {
+    flex: 1,
+    padding: 10,
+    height: Dimensions.get("window").height,
+    width: Dimensions.get("window").width
+  }
 });
 
 const enhancer = compose(
