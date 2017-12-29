@@ -69,31 +69,31 @@ export class pocs extends Component {
   });
 
   scrollToIndexRight = (index, dataSize) => {
-    console.log("RINDEX", index);
-    console.log("RDATA", dataSize);
     if (index <= dataSize && this.state.pagination !== dataSize) {
-      this.setState({ pagination: this.state.pagination + 1 }, () =>
+      this.setState({ pagination: ++this.state.pagination }, () =>
         this.flat.scrollToIndex({
           animated: true,
           index: this.state.pagination
         })
       );
+      console.log("RINDEX", index);
+      console.log("RDATA", dataSize);
+      console.log("Rpagination", this.state.pagination);
     }
-    console.log("Rpagination", this.state.pagination);
   };
 
   scrollToIndexLeft = (index, dataSize) => {
-    console.log("LINDEX", index);
-    console.log("LDATA", dataSize);
     if (index > 0 && dataSize > -1) {
-      this.setState({ pagination: this.state.pagination - 1 }, () =>
+      this.setState({ pagination: --this.state.pagination }, () =>
         this.flat.scrollToIndex({
           animated: true,
           index: this.state.pagination
         })
       );
+      console.log("LINDEX", index);
+      console.log("LDATA", dataSize);
+      console.log("Lpagination", this.state.pagination);
     }
-    console.log("Lpagination", this.state.pagination);
   };
 
   render() {
