@@ -5,16 +5,16 @@ import { head, values } from 'lodash';
 
 export const modifyAddContact = email => ({
   type: types.ADD_CONTACT_EMAIL_MODIFIED,
-  payload: email,
+  payload: email
 });
 
-export const addContact = email => (dispatch) => {
+export const addContact = email => dispatch => {
   const emailB64 = b64.encode(email);
   firebase
     .database()
     .ref(`/contatos/${emailB64}`)
     .once('value') // Faz apenas uma unica consulta, tra´s o snapshot do valordesse nó email.
-    .then((snapshot) => {
+    .then(snapshot => {
       // Retonar os valores do nó
       if (snapshot.val()) {
         // usuário que queremos adicionar e recuperar o nome
@@ -37,31 +37,31 @@ export const addContact = email => (dispatch) => {
 
 const addContactError = error => ({
   type: types.ADD_CONTACT_ERROR,
-  payload: error,
+  payload: error
 });
 
 const addContactSuccess = message => ({
   type: types.ADD_CONTACT_SUCCESS,
-  payload: message,
+  payload: message
 });
 
 export const resetNewContact = () => ({ type: types.ADD_CONTACT_RESET });
 
-export const listContactsFetch = () => (dispatch) => {
+export const listContactsFetch = () => dispatch => {
   const { currentUser } = firebase.auth();
   const emailLoggedUser = b64.encode(currentUser.email);
   firebase
     .database()
     .ref(`/usuario_contatos/${emailLoggedUser}`)
-    .on('value', (snapshot) => {
+    .on('value', snapshot => {
       dispatch({
         type: types.LIST_CONTACT_USER,
-        payload: snapshot.val(),
+        payload: snapshot.val()
       });
     });
 };
 
-export const sendMessage = (message, contactName, contactEmail) => (dispatch) => {
+export const sendMessage = (message, contactName, contactEmail) => dispatch => {
   // dados do contato
   const { currentUser } = firebase.auth();
   const currentUserEmail = currentUser.email;
@@ -95,7 +95,7 @@ export const sendMessage = (message, contactName, contactEmail) => (dispatch) =>
         .database()
         .ref(`/contatos/${currentUserEmailB64}`)
         .once('value')
-        .then((snapshot) => {
+        .then(snapshot => {
           const dadosCurrentUser = _.head(_.values(snapshot.val()));
 
           // Armazenar os cabeçalhos do contato, lista de conversas.
@@ -105,5 +105,21 @@ export const sendMessage = (message, contactName, contactEmail) => (dispatch) =>
             // Usado para atualizar o último registro existente.
             .set({ nome: dadosCurrentUser.nome, email: currentUser.email });
         });
+    });
+};
+
+export const chatUserFetch = contactEmail => dispatch => {
+  const { loggedUser } = firebase.auth();
+
+  let loggedUserB64 = b64.encode(loggedUser.email);
+  let contactEmailB64 = b64.encode(contactEmail);
+  return firebase
+    .database()
+    .ref(`/mensagens/${loggedUserB64}/${contactEmailB64}`)
+    .on('value', snapshot => {
+      dispatch({
+        type: LIST_CHAT_USER,
+        payload: snapshot.value
+      });
     });
 };
