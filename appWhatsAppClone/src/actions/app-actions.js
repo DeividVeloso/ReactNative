@@ -109,17 +109,20 @@ export const sendMessage = (message, contactName, contactEmail) => dispatch => {
 };
 
 export const chatUserFetch = contactEmail => dispatch => {
-  const { loggedUser } = firebase.auth();
+  
+  const { currentUser } = firebase.auth();
+  const currentUserEmail = currentUser.email;
 
-  let loggedUserB64 = b64.encode(loggedUser.email);
+  let loggedUserB64 = b64.encode(currentUserEmail);
   let contactEmailB64 = b64.encode(contactEmail);
   return firebase
     .database()
     .ref(`/mensagens/${loggedUserB64}/${contactEmailB64}`)
     .on('value', snapshot => {
+     
       dispatch({
-        type: LIST_CHAT_USER,
-        payload: snapshot.value
+        type: types.LIST_CHAT_USER,
+        payload: snapshot.val()
       });
     });
 };
