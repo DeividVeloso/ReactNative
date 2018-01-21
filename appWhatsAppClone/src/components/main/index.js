@@ -22,7 +22,7 @@ export default class TabViewExample extends Component {
   _renderHeader = props => <TabBarMenu {...props} {...this.props} />;
 
   _renderScene = SceneMap({
-    first: ListChats,
+    first: () => <ListChats {...this.props} />,
     //Passando o Navigate para a Lista de Contatos para que eu possa navegar para conversa.
     second: () => <ListContacts {...this.props} />, 
   });

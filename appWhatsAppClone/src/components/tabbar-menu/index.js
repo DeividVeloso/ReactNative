@@ -1,4 +1,5 @@
 import React from "react";
+import firebase from "firebase";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { View, Text, StatusBar, Image, TouchableOpacity } from "react-native";
@@ -37,7 +38,16 @@ const TabMenu = props => {
             </TouchableOpacity>
           </View>
           <View style={{ justifyContent: "center" }}>
-            <Text style={{ fontSize: 20, color: "#fff" }}>Sair</Text>
+            <TouchableOpacity
+              onPress={() =>
+                firebase
+                  .auth()
+                  .signOut()
+                  .then(resp => props.navigation.navigate("Login"))
+              }
+            >
+              <Text style={{ fontSize: 20, color: "#fff" }}>Sair</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

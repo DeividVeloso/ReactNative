@@ -13,23 +13,21 @@ import { sendMessage, chatUserFetch } from "../../actions/app-actions";
 
 class Chat extends Component {
   state = { message: "" };
-  
 
   componentWillMount() {
     this.props.chatUserFetch(this.props.navigation.state.params.contact.email);
-    this.createDataSource(this.props.listChats);
+    this.createDataSource(this.props.listChat);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps.listChats);
+    this.createDataSource(nextProps.listChat);
   }
 
-  createDataSource(listChats) {
-    console.log("SERA", listChats);
+  createDataSource(listChat) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    this.dataSource = ds.cloneWithRows(listChats);
+    this.dataSource = ds.cloneWithRows(listChat);
   }
 
   onChangeMessage(message) {
@@ -114,10 +112,10 @@ class Chat extends Component {
   }
 }
 const mapStateToProps = state => {
-  const listChats = _.map(state.chats, (val, uid) => {
+  const listChat = _.map(state.chat, (val, uid) => {
     return { ...val, uid };
   });
 
-  return { listChats: listChats };
+  return { listChat: listChat };
 };
 export default connect(mapStateToProps, { sendMessage, chatUserFetch })(Chat);

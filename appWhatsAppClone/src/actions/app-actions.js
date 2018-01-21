@@ -126,3 +126,22 @@ export const chatUserFetch = contactEmail => dispatch => {
       });
     });
 };
+
+export const chatsUserFetch = () => dispatch => {
+  
+  const { currentUser } = firebase.auth();
+  const currentUserEmail = currentUser.email;
+  let loggedUserB64 = b64.encode(currentUserEmail);
+
+  return firebase
+    .database()
+    .ref(`/usuario_conversas/${loggedUserB64}`)
+    .on('value', snapshot => {
+     
+      dispatch({
+        type: types.LIST_CHATS_USER,
+        payload: snapshot.val()
+      });
+    });
+};
+
